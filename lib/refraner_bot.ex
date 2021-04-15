@@ -5,7 +5,7 @@ defmodule RefranerBot do
 
   require Logger
 
-  alias RefranerBot.{Api, MessageFormatter}
+  alias RefranerBot.{Api, MessageFormatter, Inline}
   alias RefranerBot.Model.Refran
 
   def get_refran(language \\ "ES") do
@@ -19,6 +19,13 @@ defmodule RefranerBot do
         Logger.error("#{error_message}\n\n#{inspect(err)}")
 
         {:error, error_message}
+    end
+  end
+
+  def get_refranes(opts) do
+    with {:ok, %{body: refranes}} <- Api.get_refranes(opts),
+         struct_refranes <- Enum.map(refranes, &Refran.make!/1) do
+      {:ok, Inline.generate_articles(struct_refranes)}
     end
   end
 end

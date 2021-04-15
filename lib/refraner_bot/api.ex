@@ -8,4 +8,14 @@ defmodule RefranerBot.Api do
   def get_refran(language \\ "ES") do
     get("/api/refranes?language=#{language}")
   end
+
+  def get_refranes(opts \\ []) do
+    defaults = [count: 10, search: nil, language: "ES"]
+
+    opts =
+      Keyword.merge(defaults, opts)
+      |> Enum.filter(fn {_, elem} -> not is_nil(elem) end)
+
+    get("/api/refranes", query: opts)
+  end
 end

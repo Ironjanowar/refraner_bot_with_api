@@ -28,3 +28,6 @@ refraner_bot-*.tar
 
 # Tokens
 *.token
+
+# Logs
+log/**

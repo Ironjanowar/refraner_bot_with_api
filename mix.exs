@@ -26,7 +26,8 @@ defmodule RefranerBot.MixProject do
       {:tesla, "~> 1.2"},
       {:hackney, "~> 1.12"},
       {:jason, ">= 1.0.0"},
-      {:construct, "~> 2.0"}
+      {:construct, "~> 2.0"},
+      {:logger_file_backend, "0.0.11"}
     ]
   end
 end

@@ -25,4 +25,18 @@ defmodule RefranerBot.Bot do
     {_, answer_message} = RefranerBot.get_refran()
     answer(context, answer_message, parse_mode: "Markdown")
   end
+
+  def handle({:inline_query, %{query: ""}}, context) do
+    {_, articles} = RefranerBot.get_refranes(count: 10)
+    answer_inline_query(context, articles)
+  end
+
+  def handle({:inline_query, %{query: search}}, context) do
+    {_, articles} = RefranerBot.get_refranes(count: 10, search: search)
+    answer_inline_query(context, articles)
+  end
+
+  def handle(_, _) do
+    :ignored
+  end
 end

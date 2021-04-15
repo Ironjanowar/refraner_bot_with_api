@@ -1,5 +1,6 @@
 defmodule RefranerBot.Model.Refran do
   use Construct do
+    field(:id, :integer)
     field(:refran, :string)
     field(:significado, :string, default: nil)
     field(:ideas_clave, :string, default: nil)
