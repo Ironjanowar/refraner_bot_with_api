@@ -25,6 +25,11 @@ defmodule RefranerBot.MessageFormatter do
     {:error, "Can't format that..."}
   end
 
+  def format_refran(%Refran{} = refran, :summary), do: {:ok, "📜 _#{refran.refran}_ 📜"}
+  def format_refran(%Refran{} = refran, :full), do: format_refran(refran)
+
+  def format_refran(_, _), do: {:error, "Can't format that..."}
+
   # Private
   defp from_atom(key) when is_atom(key), do: Atom.to_string(key)
   defp from_atom(key), do: key

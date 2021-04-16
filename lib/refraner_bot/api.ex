@@ -18,4 +18,8 @@ defmodule RefranerBot.Api do
 
     get("/api/refranes", query: opts)
   end
+
+  def get_refran_by_id(id) do
+    get("/api/refranes/#{id}")
+  end
 end
