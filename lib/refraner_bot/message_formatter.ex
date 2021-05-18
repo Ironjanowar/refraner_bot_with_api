@@ -5,6 +5,7 @@ defmodule RefranerBot.MessageFormatter do
     refran_data =
       refran
       |> Map.from_struct()
+      |> Map.drop([:id])
       |> Enum.filter(fn
         {:refran, _} -> false
         {_, nil} -> false
